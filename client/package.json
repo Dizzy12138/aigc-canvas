@@ -1,0 +1,35 @@
+{
+  "name": "aigc-canvas-client",
+  "version": "1.0.0",
+  "description": "Frontend client for the AIGC infinite canvas application.",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .js,.jsx",
+    "lint:fix": "eslint . --ext .js,.jsx --fix"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "jwt-decode": "^3.1.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.2",
+    "react-konva": "^18.2.2",
+    "konva": "^9.3.0"
+    ,
+    "use-image": "^1.0.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "eslint": "^8.49.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2.8.8",
+    "vite": "^4.5.0"
+  }
+}
