@@ -4,6 +4,7 @@ import { Stage, Layer, Image as KonvaImage, Text as KonvaText } from 'react-konv
 import useImage from 'use-image';
 import GeneratorPanel from './GeneratorPanel';
 import ResultDock from './ResultDock';
+import ChatPanel from './ChatPanel';
 import api from '../api';
 
 /**
@@ -201,6 +202,8 @@ export default function CanvasEditor() {
           </button>
         </div>
       </div>
+      {/* Chat panel on the right */}
+      <ChatPanel />
     </div>
   );
 }

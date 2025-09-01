@@ -90,6 +90,34 @@ exports.getJobStatus = async (req, res) => {
 };
 
 /**
+ * Simple chat endpoints that provide a placeholder AI assistant. The
+ * implementation is intentionally lightweight: it returns a static greeting
+ * and echoes user messages. This structure can later be replaced with a real
+ * conversational model.
+ */
+
+exports.getChatMessages = async (req, res) => {
+  return res.json({
+    messages: [
+      {
+        role: 'assistant',
+        content: 'Hi, 我是你的AI设计师，让我们开始今天的创作吧！',
+      },
+    ],
+  });
+};
+
+exports.chatReply = async (req, res) => {
+  const { message } = req.body;
+  if (!message) {
+    return res.status(400).json({ message: 'Message is required' });
+  }
+  // In a real implementation this would call an LLM service.
+  const reply = `你刚才说：“${message}”`;
+  return res.json({ reply });
+};
+
+/**
  * The following endpoints are placeholders for additional AI functionality
  * such as inpainting, enhancement and harmonization. They currently
  * return a 501 response and should be implemented by integrating
