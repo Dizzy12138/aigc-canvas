@@ -90,6 +90,13 @@ router.post('/enhance', auth, aiController.enhance);
 router.post('/harmonize', auth, aiController.harmonize);
 
 /**
+ * Simple chat endpoints for the AI design assistant. These routes are
+ * placeholders and currently return mock responses.
+ */
+router.get('/chat', auth, aiController.getChatMessages);
+router.post('/chat', auth, aiController.chatReply);
+
+/**
  * @openapi
  * /api/ai/job/{id}:
  *   get:

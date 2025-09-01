@@ -5,8 +5,7 @@
     "node": false
   },
   "extends": [
-    "airbnb",
-    "prettier"
+    "airbnb"
   ],
   "parserOptions": {
     "ecmaFeatures": {
