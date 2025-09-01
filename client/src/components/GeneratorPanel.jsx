@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import api from '../api';
 
 /**
@@ -17,6 +17,7 @@ export default function GeneratorPanel({ onResult }) {
   const [height, setHeight] = useState(1024);
   const [batch, setBatch] = useState(4);
   const [loading, setLoading] = useState(false);
+  const intervalRef = useRef(null);
 
   // Fetch available models from the backend on mount
   useEffect(() => {
@@ -47,22 +48,24 @@ export default function GeneratorPanel({ onResult }) {
         model: selectedModel,
       });
       const { jobId } = res.data;
-      // Poll for job completion every second
-      const interval = setInterval(async () => {
+      intervalRef.current = setInterval(async () => {
         try {
           const statusRes = await api.get(`/ai/job/${jobId}`);
           if (statusRes.data.status === 'completed') {
-            clearInterval(interval);
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
             setLoading(false);
             onResult(statusRes.data.result || []);
           } else if (statusRes.data.status === 'failed') {
-            clearInterval(interval);
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
             setLoading(false);
             // eslint-disable-next-line no-alert
             alert('Generation failed');
           }
         } catch (err) {
-          clearInterval(interval);
+          clearInterval(intervalRef.current);
+          intervalRef.current = null;
           setLoading(false);
           console.error(err);
         }
@@ -72,6 +75,15 @@ export default function GeneratorPanel({ onResult }) {
       console.error(err);
     }
   };
+
+  useEffect(
+    () => () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    },
+    [],
+  );
 
   return (
     <div style={{ marginBottom: '16px' }}>

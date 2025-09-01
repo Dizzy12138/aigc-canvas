@@ -12,6 +12,7 @@
 - **一键采纳候选图**：生成完成后，候选图将在 “生成结果” 区域列出，点击任意图片即可将其作为新图层添加到画布。
 - **素材管理与画布编辑**：保留了素材上传/拖拽到画布的功能，支持图层拖动与保存；生成的新图与素材图层交互保持一致。
 - **简易异步队列**：后端用内存模拟任务队列，在真实部署中可替换为 Redis + BullMQ，并通过 ComfyUI 调用实际模型生成。
+- **聊天助手**：右侧提供一个简易的 AI 设计聊天窗口，可与用户交流提示词或创意（当前返回占位回复，便于后续替换为真实 LLM 服务）。
 - **OpenAPI 文档**：所有接口均附有 swagger 注释，启动后访问 `/api-docs` 查看文档。
 
 ## 文件结构
@@ -34,7 +35,8 @@ xingliu-canvas-v2/
 │           ├── ProjectList.jsx
 │           ├── CanvasEditor.jsx
 │           ├── GeneratorPanel.jsx  # 新增：生成器面板
-│           └── ResultDock.jsx      # 新增：生成结果列表
+│           ├── ResultDock.jsx      # 新增：生成结果列表
+│           └── ChatPanel.jsx       # 新增：聊天助手
 ├── server/                  # 后端 (Node.js + Express + MongoDB)
 │   ├── index.js
 │   ├── .env.example         # 环境变量示例（端口、Mongo 连接、JWT 密钥、ComfyUI API）
